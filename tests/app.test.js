@@ -29,4 +29,22 @@ describe('homepage shell', () => {
     expect(Array.isArray(SITE_CONTENT.zh.publications.items)).toBe(true);
     expect(SITE_CONTENT.en.contact.email).toContain('@');
   });
+
+  it('renders hero, research, experience, publications, and contact from zh data', async () => {
+    const { renderSite } = await import('../scripts/app.js');
+    const { SITE_CONTENT } = await import('../scripts/content.js');
+
+    document.body.innerHTML = '<div id="app"></div>';
+
+    renderSite(document.querySelector('#app'), SITE_CONTENT, {
+      language: 'zh',
+      theme: 'light',
+    });
+
+    expect(document.querySelector('.hero__name')?.textContent).toContain('Zhongqi Zhao');
+    expect(document.querySelector('#about h2')?.textContent).toBe('研究方向');
+    expect(document.querySelector('#experience .timeline')).not.toBeNull();
+    expect(document.querySelector('#publications .publication-list')).not.toBeNull();
+    expect(document.querySelector('#contact a[href^="mailto:"]')).not.toBeNull();
+  });
 });
