@@ -20,11 +20,22 @@ export const SITE_CONTENT = {
     },
     experience: {
       heading: '经历',
-      items: [],
+      items: [
+        {
+          period: '2024 - Present',
+          title: '博士研究生',
+          org: 'Example University',
+        },
+      ],
     },
     publications: {
       heading: '论文发表',
-      items: [],
+      items: [
+        {
+          title: 'A Placeholder Paper Title',
+          authors: 'Zhongqi Zhao, Coauthor A, Coauthor B',
+        },
+      ],
     },
     contact: {
       heading: '联系方式',
@@ -53,11 +64,22 @@ export const SITE_CONTENT = {
     },
     experience: {
       heading: 'Experience',
-      items: [],
+      items: [
+        {
+          period: '2024 - Present',
+          title: 'PhD Student',
+          org: 'Example University',
+        },
+      ],
     },
     publications: {
       heading: 'Publications',
-      items: [],
+      items: [
+        {
+          title: 'A Placeholder Paper Title',
+          authors: 'Zhongqi Zhao, Coauthor A, Coauthor B',
+        },
+      ],
     },
     contact: {
       heading: 'Contact',

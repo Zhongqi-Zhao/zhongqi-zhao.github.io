@@ -81,4 +81,21 @@ describe('homepage shell', () => {
     expect(document.documentElement.dataset.theme).toBe('dark');
     expect(localStorage.getItem('homepage-theme')).toBe('dark');
   });
+
+  it('renders the layout hooks needed for hero, timeline, and publications styling', async () => {
+    const { renderSite } = await import('../scripts/app.js');
+    const { SITE_CONTENT } = await import('../scripts/content.js');
+
+    document.body.innerHTML = '<div id="app"></div>';
+
+    renderSite(document.querySelector('#app'), SITE_CONTENT, {
+      language: 'en',
+      theme: 'light',
+    });
+
+    expect(document.querySelector('.site-header--sticky')).not.toBeNull();
+    expect(document.querySelector('.hero__portrait img')).not.toBeNull();
+    expect(document.querySelector('.timeline__item')).not.toBeNull();
+    expect(document.querySelector('.publication-card, .publication-list')).not.toBeNull();
+  });
 });
