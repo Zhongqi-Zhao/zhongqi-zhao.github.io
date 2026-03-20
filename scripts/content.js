@@ -70,7 +70,7 @@ export const SITE_CONTENT = {
     research: {
       heading: 'Research Interests',
       summary: 'Place the English research summary here.',
-      items: ['Area One', 'Area Two', 'Area Three'],
+      items: ['Quantum Computing', 'Area Two', 'Area Three'],
     },
     experience: {
       heading: 'Experience',
