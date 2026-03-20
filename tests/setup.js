@@ -2,5 +2,7 @@ import { afterEach } from 'vitest';
 
 afterEach(() => {
   document.body.innerHTML = '';
-  localStorage.clear();
+  if (typeof localStorage?.clear === 'function') {
+    localStorage.clear();
+  }
 });
