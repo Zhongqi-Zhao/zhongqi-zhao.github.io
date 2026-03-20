@@ -7,7 +7,7 @@ export const SITE_CONTENT = {
       contact: '联系',
     },
     hero: {
-      name: '赵中琦 / Zhongqi Zhao',
+      name: '赵中琦',
       title: '',
       tagline: '在这里放置中文一句话简介',
       affiliation: '香港中文大学 (深圳) / 广东深圳',
@@ -61,7 +61,7 @@ export const SITE_CONTENT = {
       contact: 'Contact',
     },
     hero: {
-      name: 'Zhongqi Zhao',
+      name: 'Zhongqi Zhao / 赵中琦',
       title: '',
       tagline: 'Place the English one-line introduction here.',
       affiliation: 'The Chinese University of Hong Kong, Shenzhen / Shenzhen, Guangdong, China',

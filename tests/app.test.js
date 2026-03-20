@@ -41,7 +41,7 @@ describe('homepage shell', () => {
       theme: 'light',
     });
 
-    expect(document.querySelector('.hero__name')?.textContent).toContain('Zhongqi Zhao');
+    expect(document.querySelector('.hero__name')?.textContent).toContain('赵中琦');
     expect(document.querySelector('#about h2')?.textContent).toBe('研究方向');
     expect(document.querySelector('#experience .timeline')).not.toBeNull();
     expect(document.querySelector('#publications .publication-list')).not.toBeNull();
