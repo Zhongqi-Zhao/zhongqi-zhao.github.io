@@ -7,11 +7,11 @@ export const SITE_CONTENT = {
       contact: '联系',
     },
     hero: {
-      name: 'Zhongqi Zhao',
-      title: '学术研究者',
+      name: '赵中琦 / Zhongqi Zhao',
+      title: '',
       tagline: '在这里放置中文一句话简介',
-      affiliation: 'Institution / Location',
-      portraitAlt: '赵中齐头像',
+      affiliation: '香港中文大学 (深圳) / 广东深圳',
+      portraitAlt: '赵中琦头像',
     },
     research: {
       heading: '研究方向',
@@ -22,9 +22,19 @@ export const SITE_CONTENT = {
       heading: '经历',
       items: [
         {
-          period: '2024 - Present',
-          title: '博士研究生',
-          org: 'Example University',
+          period: '2018 - 2022',
+          title: '光电信息科学与工程学士',
+          org: '东华大学',
+        },
+        {
+          period: '2023 - 2025',
+          title: '物理学硕士',
+          org: '哥本哈根大学',
+        },
+        {
+          period: '2025 - Present',
+          title: '研究助理',
+          org: '香港中文大学 (深圳）',
         },
       ],
     },
@@ -52,9 +62,9 @@ export const SITE_CONTENT = {
     },
     hero: {
       name: 'Zhongqi Zhao',
-      title: 'Academic Researcher',
+      title: '',
       tagline: 'Place the English one-line introduction here.',
-      affiliation: 'Institution / Location',
+      affiliation: 'The Chinese University of Hong Kong, Shenzhen / Shenzhen, Guangdong, China',
       portraitAlt: 'Portrait of Zhongqi Zhao',
     },
     research: {
@@ -66,9 +76,19 @@ export const SITE_CONTENT = {
       heading: 'Experience',
       items: [
         {
-          period: '2024 - Present',
-          title: 'PhD Student',
-          org: 'Example University',
+          period: '2018 - 2022',
+          title: 'BSc in Photoelectronic Information Science and Engineering ',
+          org: 'Donghua University',
+        },
+        {
+          period: '2023 - 2025',
+          title: 'MSc in Physics',
+          org: 'University of Copenhagen',
+        },
+        {
+          period: '2025 - Present',
+          title: 'Research Assistant',
+          org: 'The University of Hong Kong, Shenzhen',
         },
       ],
     },
