@@ -47,4 +47,38 @@ describe('homepage shell', () => {
     expect(document.querySelector('#publications .publication-list')).not.toBeNull();
     expect(document.querySelector('#contact a[href^="mailto:"]')).not.toBeNull();
   });
+
+  it('switches visible text when the language toggle is clicked', async () => {
+    const { renderSite } = await import('../scripts/app.js');
+    const { SITE_CONTENT } = await import('../scripts/content.js');
+
+    document.body.innerHTML = '<div id="app"></div>';
+
+    renderSite(document.querySelector('#app'), SITE_CONTENT, {
+      language: 'zh',
+      theme: 'light',
+    });
+
+    document.querySelector('[data-language="en"]')?.click();
+
+    expect(document.querySelector('#about h2')?.textContent).toBe('Research Interests');
+    expect(localStorage.getItem('homepage-language')).toBe('en');
+  });
+
+  it('updates the document theme and persists it', async () => {
+    const { renderSite } = await import('../scripts/app.js');
+    const { SITE_CONTENT } = await import('../scripts/content.js');
+
+    document.body.innerHTML = '<div id="app"></div>';
+
+    renderSite(document.querySelector('#app'), SITE_CONTENT, {
+      language: 'zh',
+      theme: 'light',
+    });
+
+    document.querySelector('[data-theme-toggle]')?.click();
+
+    expect(document.documentElement.dataset.theme).toBe('dark');
+    expect(localStorage.getItem('homepage-theme')).toBe('dark');
+  });
 });

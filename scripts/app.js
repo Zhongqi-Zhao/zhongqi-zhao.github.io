@@ -1,6 +1,25 @@
 import { SITE_CONTENT } from './content.js';
 
-function renderNav(content) {
+const STORAGE_KEYS = {
+  language: 'homepage-language',
+  theme: 'homepage-theme',
+};
+
+function readStoredValue(key, fallback) {
+  const value = localStorage.getItem(key);
+  return value || fallback;
+}
+
+function writeStoredValue(key, value) {
+  localStorage.setItem(key, value);
+}
+
+function setTheme(theme) {
+  document.documentElement.dataset.theme = theme;
+  writeStoredValue(STORAGE_KEYS.theme, theme);
+}
+
+function renderNav(content, state) {
   return `
     <header class="site-header">
       <nav class="site-nav" aria-label="Primary">
@@ -8,6 +27,11 @@ function renderNav(content) {
         <a href="#experience">${content.nav.experience}</a>
         <a href="#publications">${content.nav.publications}</a>
         <a href="#contact">${content.nav.contact}</a>
+        <div class="site-nav__controls">
+          <button type="button" data-language="zh" aria-pressed="${state.language === 'zh'}">ZH</button>
+          <button type="button" data-language="en" aria-pressed="${state.language === 'en'}">EN</button>
+          <button type="button" data-theme-toggle>${state.theme === 'light' ? 'Dark' : 'Light'}</button>
+        </div>
       </nav>
     </header>
   `;
@@ -103,10 +127,17 @@ function renderHero(content) {
 }
 
 export function renderSite(root, contentMap, state) {
-  const content = contentMap[state.language];
+  const nextState = {
+    language: state.language,
+    theme: state.theme,
+  };
+  const content = contentMap[nextState.language];
+
+  setTheme(nextState.theme);
+  document.documentElement.lang = nextState.language === 'zh' ? 'zh-CN' : 'en';
 
   root.innerHTML = `
-    ${renderNav(content)}
+    ${renderNav(content, nextState)}
     <main>
       ${renderHero(content)}
       ${renderResearch(content)}
@@ -115,13 +146,27 @@ export function renderSite(root, contentMap, state) {
       ${renderContact(content)}
     </main>
   `;
+
+  root.querySelectorAll('[data-language]').forEach((button) => {
+    button.addEventListener('click', () => {
+      nextState.language = button.dataset.language;
+      writeStoredValue(STORAGE_KEYS.language, nextState.language);
+      renderSite(root, contentMap, nextState);
+    });
+  });
+
+  root.querySelector('[data-theme-toggle]')?.addEventListener('click', () => {
+    nextState.theme = nextState.theme === 'light' ? 'dark' : 'light';
+    setTheme(nextState.theme);
+    renderSite(root, contentMap, nextState);
+  });
 }
 
 const appRoot = document.querySelector('#app');
 
 if (appRoot) {
   renderSite(appRoot, SITE_CONTENT, {
-    language: 'zh',
-    theme: 'light',
+    language: readStoredValue(STORAGE_KEYS.language, 'zh'),
+    theme: readStoredValue(STORAGE_KEYS.theme, 'light'),
   });
 }
