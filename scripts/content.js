@@ -64,7 +64,7 @@ export const SITE_CONTENT = {
       name: 'Zhongqi Zhao / 赵中琦',
       title: '',
       tagline: 'Place the English one-line introduction here.',
-      affiliation: 'The Chinese University of Hong Kong, Shenzhen / Shenzhen, Guangdong, China',
+      affiliation: 'The Chinese University of Hong Kong, Shenzhen / Guangdong, China',
       portraitAlt: 'Portrait of Zhongqi Zhao',
     },
     research: {
