@@ -50,7 +50,6 @@ function renderResearch(content) {
   return `
     <section id="about" class="section section--research">
       <h2>${content.research.heading}</h2>
-      <p class="section__summary">${content.research.summary}</p>
       <ul class="research__tags">${tags}</ul>
     </section>
   `;
@@ -118,10 +117,6 @@ function renderContact(content) {
 }
 
 function renderHero(content) {
-  const researchTags = content.research.items
-    .slice(0, 3)
-    .map((item) => `<li class="tag">${item}</li>`)
-    .join('');
   const title = content.hero.title ? `<p class="hero__title">${content.hero.title}</p>` : '';
 
   return `
@@ -135,7 +130,6 @@ function renderHero(content) {
         <div class="hero__meta">
           <a class="hero__contact-link" href="mailto:${content.contact.email}">${content.contact.email}</a>
         </div>
-        <ul class="hero__tags">${researchTags}</ul>
       </div>
       <div class="hero__aside">
         <div class="hero__portrait">

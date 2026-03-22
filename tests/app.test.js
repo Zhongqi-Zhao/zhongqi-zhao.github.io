@@ -53,6 +53,9 @@ describe('homepage shell', () => {
 
     expect(document.querySelector('.hero__name')?.textContent).toContain('赵中琦');
     expect(document.querySelector('#about h2')?.textContent).toBe('研究方向');
+    expect(document.querySelector('.hero__tags')).toBeNull();
+    expect(document.querySelector('#about .section__summary')).toBeNull();
+    expect(document.querySelectorAll('#about .research__tags .tag')).toHaveLength(SITE_CONTENT.zh.research.items.length);
     expect(document.querySelector('#experience .timeline')).not.toBeNull();
     expect(document.querySelector('#publications .publication-list')).not.toBeNull();
     expect(document.querySelector('#contact a[href^="mailto:"]')).not.toBeNull();
