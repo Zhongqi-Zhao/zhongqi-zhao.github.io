@@ -3,12 +3,12 @@ import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
 describe('homepage shell', () => {
-  it('uses the approved smaller typography scale for the hero name and section headings', () => {
+  it('uses the approved al-folio-inspired typography scale for the hero name and section headings', () => {
     const stylesheet = readFileSync(resolve(process.cwd(), 'styles/site.css'), 'utf8');
 
-    expect(stylesheet).toContain('font-size: clamp(2.1rem, 4.2vw, 3.6rem);');
-    expect(stylesheet).toContain('font-size: clamp(1.45rem, 2.4vw, 1.95rem);');
-    expect(stylesheet).toContain('font-size: 2.35rem;');
+    expect(stylesheet).toContain('font-size: clamp(2.35rem, 4.6vw, 4rem);');
+    expect(stylesheet).toContain('font-size: clamp(1.35rem, 2.2vw, 1.75rem);');
+    expect(stylesheet).toContain('font-size: 2.6rem;');
   });
 
   it('renders the core section anchors', async () => {
@@ -107,5 +107,22 @@ describe('homepage shell', () => {
     expect(document.querySelector('.hero__portrait img')).not.toBeNull();
     expect(document.querySelector('.timeline__item')).not.toBeNull();
     expect(document.querySelector('.publication-card, .publication-list')).not.toBeNull();
+  });
+
+  it('renders the slimmer academic homepage structure', async () => {
+    const { renderSite } = await import('../scripts/app.js');
+    const { SITE_CONTENT } = await import('../scripts/content.js');
+
+    document.body.innerHTML = '<div id="app"></div>';
+
+    renderSite(document.querySelector('#app'), SITE_CONTENT, {
+      language: 'en',
+      theme: 'light',
+    });
+
+    expect(document.querySelector('.site-nav__brand')).not.toBeNull();
+    expect(document.querySelector('.site-nav__brand')?.textContent).toBe('Zhongqi Zhao');
+    expect(document.querySelector('.hero__intro')).not.toBeNull();
+    expect(document.querySelector('.hero__contact-link[href^="mailto:"]')).not.toBeNull();
   });
 });

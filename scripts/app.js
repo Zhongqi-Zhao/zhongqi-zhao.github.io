@@ -20,9 +20,12 @@ function setTheme(theme) {
 }
 
 function renderNav(content, state) {
+  const brand = state.language === 'en' ? content.hero.name.split('/')[0].trim() : content.hero.name;
+
   return `
     <header class="site-header site-header--sticky">
       <nav class="site-nav" aria-label="Primary">
+        <a class="site-nav__brand" href="#app">${brand}</a>
         <div class="site-nav__links">
           <a href="#about">${content.nav.about}</a>
           <a href="#experience">${content.nav.experience}</a>
@@ -119,19 +122,26 @@ function renderHero(content) {
     .slice(0, 3)
     .map((item) => `<li class="tag">${item}</li>`)
     .join('');
+  const title = content.hero.title ? `<p class="hero__title">${content.hero.title}</p>` : '';
 
   return `
     <section class="hero section" data-section="hero">
-      <div class="hero__portrait">
-        <img src="./assets/profile-placeholder.svg" alt="${content.hero.portraitAlt}">
-      </div>
-      <div class="hero__content">
-        <p class="hero__title">${content.hero.title}</p>
+      <div class="hero__intro">
+        <p class="hero__eyebrow">${content.nav.about}</p>
+        ${title}
         <h1 class="hero__name">${content.hero.name}</h1>
-        <p class="hero__tagline">${content.hero.tagline}</p>
         <p class="hero__affiliation">${content.hero.affiliation}</p>
+        <p class="hero__tagline">${content.hero.tagline}</p>
+        <div class="hero__meta">
+          <a class="hero__contact-link" href="mailto:${content.contact.email}">${content.contact.email}</a>
+          <a class="hero__contact" href="#contact">${content.nav.contact}</a>
+        </div>
         <ul class="hero__tags">${researchTags}</ul>
-        <a class="hero__contact" href="#contact">Contact</a>
+      </div>
+      <div class="hero__aside">
+        <div class="hero__portrait">
+          <img src="./assets/profile-placeholder.svg" alt="${content.hero.portraitAlt}">
+        </div>
       </div>
     </section>
   `;
