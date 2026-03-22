@@ -1,6 +1,16 @@
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
 describe('homepage shell', () => {
+  it('uses the approved smaller typography scale for the hero name and section headings', () => {
+    const stylesheet = readFileSync(resolve(process.cwd(), 'styles/site.css'), 'utf8');
+
+    expect(stylesheet).toContain('font-size: clamp(2.1rem, 4.2vw, 3.6rem);');
+    expect(stylesheet).toContain('font-size: clamp(1.45rem, 2.4vw, 1.95rem);');
+    expect(stylesheet).toContain('font-size: 2.35rem;');
+  });
+
   it('renders the core section anchors', async () => {
     const { renderSite } = await import('../scripts/app.js');
     const { SITE_CONTENT } = await import('../scripts/content.js');
