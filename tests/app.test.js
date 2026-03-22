@@ -125,5 +125,6 @@ describe('homepage shell', () => {
     expect(document.querySelector('.site-nav__brand')?.textContent).toBe('Zhongqi Zhao');
     expect(document.querySelector('.hero__intro')).not.toBeNull();
     expect(document.querySelector('.hero__contact-link[href^="mailto:"]')).not.toBeNull();
+    expect(document.querySelector('.hero__contact[href="#contact"]')).toBeNull();
   });
 });

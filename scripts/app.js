@@ -134,7 +134,6 @@ function renderHero(content) {
         <p class="hero__tagline">${content.hero.tagline}</p>
         <div class="hero__meta">
           <a class="hero__contact-link" href="mailto:${content.contact.email}">${content.contact.email}</a>
-          <a class="hero__contact" href="#contact">${content.nav.contact}</a>
         </div>
         <ul class="hero__tags">${researchTags}</ul>
       </div>
