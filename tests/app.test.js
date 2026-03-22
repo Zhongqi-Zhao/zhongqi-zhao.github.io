@@ -5,10 +5,12 @@ import { describe, expect, it } from 'vitest';
 describe('homepage shell', () => {
   it('uses the approved al-folio-inspired typography scale for the hero name and section headings', () => {
     const stylesheet = readFileSync(resolve(process.cwd(), 'styles/site.css'), 'utf8');
+    const heroBlock = stylesheet.match(/\.hero\s*\{[\s\S]*?\n\}/)?.[0] ?? '';
 
     expect(stylesheet).toContain('font-size: clamp(2.35rem, 4.6vw, 4rem);');
     expect(stylesheet).toContain('font-size: clamp(1.35rem, 2.2vw, 1.75rem);');
     expect(stylesheet).toContain('font-size: 2.6rem;');
+    expect(heroBlock).not.toContain('border-bottom');
   });
 
   it('renders the core section anchors', async () => {

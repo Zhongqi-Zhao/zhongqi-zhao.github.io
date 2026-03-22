@@ -149,7 +149,6 @@ button {
   align-items: start;
   margin-top: 42px;
   padding-bottom: 40px;
-  border-bottom: 1px solid var(--line-strong);
 }
 
 .hero__intro {
