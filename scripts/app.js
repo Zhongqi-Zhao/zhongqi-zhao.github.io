@@ -140,7 +140,7 @@ function renderHero(content) {
       </div>
       <div class="hero__aside">
         <div class="hero__portrait">
-          <img src="./assets/profile-placeholder.svg" alt="${content.hero.portraitAlt}">
+          <img src="./Einstein.webp" alt="${content.hero.portraitAlt}">
         </div>
       </div>
     </section>

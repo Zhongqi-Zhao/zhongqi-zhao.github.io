@@ -105,6 +105,7 @@ describe('homepage shell', () => {
 
     expect(document.querySelector('.site-header--sticky')).not.toBeNull();
     expect(document.querySelector('.hero__portrait img')).not.toBeNull();
+    expect(document.querySelector('.hero__portrait img')?.getAttribute('src')).toBe('./Einstein.webp');
     expect(document.querySelector('.timeline__item')).not.toBeNull();
     expect(document.querySelector('.publication-card, .publication-list')).not.toBeNull();
   });
