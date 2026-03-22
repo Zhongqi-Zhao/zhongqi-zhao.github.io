@@ -42,8 +42,8 @@ export const SITE_CONTENT = {
       heading: '论文发表',
       items: [
         {
-          title: 'A Placeholder Paper Title',
-          authors: 'Zhongqi Zhao, Coauthor A, Coauthor B',
+          title: '',
+          authors: '',
         },
       ],
     },
@@ -96,8 +96,8 @@ export const SITE_CONTENT = {
       heading: 'Publications',
       items: [
         {
-          title: 'A Placeholder Paper Title',
-          authors: 'Zhongqi Zhao, Coauthor A, Coauthor B',
+          title: '',
+          authors: '',
         },
       ],
     },
