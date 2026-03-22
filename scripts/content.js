@@ -77,7 +77,7 @@ export const SITE_CONTENT = {
       items: [
         {
           period: '2018 - 2022',
-          title: 'BSc in Photoelectronic Information Science and Engineering ',
+          title: 'BSc in Optoelectronic Information Science and Engineering ',
           org: 'Donghua University, Shanghai, China',
         },
         {
