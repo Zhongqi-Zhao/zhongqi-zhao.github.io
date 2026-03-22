@@ -16,7 +16,7 @@ export const SITE_CONTENT = {
     research: {
       heading: '研究方向',
       summary: '在这里放置中文研究简介。',
-      items: ['方向一', '方向二', '方向三'],
+      items: ['量子计算'],
     },
     experience: {
       heading: '经历',
@@ -49,7 +49,7 @@ export const SITE_CONTENT = {
     },
     contact: {
       heading: '联系方式',
-      email: 'name@example.com',
+      email: 'zhaozhongqi@cuhk.edu.cn',
       links: [],
     },
   },
@@ -70,7 +70,7 @@ export const SITE_CONTENT = {
     research: {
       heading: 'Research Interests',
       summary: 'Place the English research summary here.',
-      items: ['Quantum Computing', 'Area Two', 'Area Three'],
+      items: ['Quantum Computing'],
     },
     experience: {
       heading: 'Experience',
@@ -103,7 +103,7 @@ export const SITE_CONTENT = {
     },
     contact: {
       heading: 'Contact',
-      email: 'name@example.com',
+      email: 'zhaozhongqi@cuhk.edu.cn',
       links: [],
     },
   },
