@@ -24,17 +24,20 @@ export const SITE_CONTENT = {
       {
         period: '2018 - 2022',
         title: 'BSc in Optoelectronic Information Science and Engineering ',
-        org: 'Donghua University, Shanghai, China',
+        faculty: 'Physics Department',
+        school: 'Donghua University, Shanghai, China',
       },
       {
         period: '2023 - 2025',
         title: 'MSc in Physics',
-        org: 'University of Copenhagen, Denmark',
+        faculty: 'Niels Bohr Institute',
+        school: 'University of Copenhagen, Denmark',
       },
       {
         period: '2025 - Present',
         title: 'Research Assistant',
-        org: 'The University of Hong Kong, Shenzhen, China',
+        faculty: 'School of Science and Engineering',
+        school: 'The Chinese University of Hong Kong, Shenzhen, China',
       },
     ],
   },

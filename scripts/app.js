@@ -1,24 +1,6 @@
 import { SITE_CONTENT } from './content.js';
 
-const STORAGE_KEYS = {
-  theme: 'homepage-theme',
-};
-
-function readStoredValue(key, fallback) {
-  const value = localStorage.getItem(key);
-  return value || fallback;
-}
-
-function writeStoredValue(key, value) {
-  localStorage.setItem(key, value);
-}
-
-function setTheme(theme) {
-  document.documentElement.dataset.theme = theme;
-  writeStoredValue(STORAGE_KEYS.theme, theme);
-}
-
-function renderNav(content, state) {
+function renderNav(content) {
   return `
     <header class="site-header site-header--sticky">
       <nav class="site-nav" aria-label="Primary">
@@ -28,9 +10,6 @@ function renderNav(content, state) {
           <a href="#experience">${content.nav.experience}</a>
           <a href="#publications">${content.nav.publications}</a>
           <a href="#contact">${content.nav.contact}</a>
-        </div>
-        <div class="site-nav__controls">
-          <button type="button" data-theme-toggle>${state.theme === 'light' ? 'Dark' : 'Light'}</button>
         </div>
       </nav>
     </header>
@@ -59,7 +38,8 @@ function renderTimeline(content) {
               <span class="timeline__period">${item.period}</span>
               <div class="timeline__content">
                 <strong>${item.title}</strong>
-                <p>${item.org}</p>
+                <p class="timeline__faculty">${item.faculty}</p>
+                <p class="timeline__school">${item.school}</p>
               </div>
             </li>
           `,
@@ -136,16 +116,11 @@ function renderHero(content) {
   `;
 }
 
-export function renderSite(root, content, state) {
-  const nextState = {
-    theme: state.theme,
-  };
-
-  setTheme(nextState.theme);
+export function renderSite(root, content) {
   document.documentElement.lang = 'en';
 
   root.innerHTML = `
-    ${renderNav(content, nextState)}
+    ${renderNav(content)}
     <main class="page-shell">
       ${renderHero(content)}
       ${renderResearch(content)}
@@ -154,18 +129,10 @@ export function renderSite(root, content, state) {
       ${renderContact(content)}
     </main>
   `;
-
-  root.querySelector('[data-theme-toggle]')?.addEventListener('click', () => {
-    nextState.theme = nextState.theme === 'light' ? 'dark' : 'light';
-    setTheme(nextState.theme);
-    renderSite(root, content, nextState);
-  });
 }
 
 const appRoot = document.querySelector('#app');
 
 if (appRoot) {
-  renderSite(appRoot, SITE_CONTENT, {
-    theme: readStoredValue(STORAGE_KEYS.theme, 'light'),
-  });
+  renderSite(appRoot, SITE_CONTENT);
 }

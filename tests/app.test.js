@@ -7,6 +7,7 @@ describe('homepage shell', () => {
     const stylesheet = readFileSync(resolve(process.cwd(), 'styles/site.css'), 'utf8');
     const heroBlock = stylesheet.match(/\.hero\s*\{[\s\S]*?\n\}/)?.[0] ?? '';
 
+    expect(stylesheet).not.toContain(":root[data-theme='dark']");
     expect(stylesheet).toContain('--ku-red: #901a1e;');
     expect(stylesheet).toContain('background: #ffffff;');
     expect(stylesheet).toContain('background: var(--ku-red);');
@@ -27,7 +28,6 @@ describe('homepage shell', () => {
     document.body.innerHTML = '<div id="app"></div>';
 
     renderSite(document.querySelector('#app'), SITE_CONTENT, {
-      theme: 'light',
     });
 
     expect(document.querySelector('[data-section="hero"]')).not.toBeNull();
@@ -45,6 +45,8 @@ describe('homepage shell', () => {
     expect(SITE_CONTENT.research.heading).toBe('Research Interests');
     expect(Array.isArray(SITE_CONTENT.research.items)).toBe(true);
     expect(Array.isArray(SITE_CONTENT.experience.items)).toBe(true);
+    expect(SITE_CONTENT.experience.items[0].faculty).toBeTruthy();
+    expect(SITE_CONTENT.experience.items[0].school).toBeTruthy();
     expect(Array.isArray(SITE_CONTENT.publications.items)).toBe(true);
     expect(SITE_CONTENT.contact.email).toContain('@');
   });
@@ -56,7 +58,6 @@ describe('homepage shell', () => {
     document.body.innerHTML = '<div id="app"></div>';
 
     renderSite(document.querySelector('#app'), SITE_CONTENT, {
-      theme: 'light',
     });
 
     expect(document.documentElement.lang).toBe('en');
@@ -67,6 +68,14 @@ describe('homepage shell', () => {
     expect(document.querySelector('#about .section__summary')).toBeNull();
     expect(document.querySelectorAll('#about .research__tags .tag')).toHaveLength(SITE_CONTENT.research.items.length);
     expect(document.querySelector('#experience .timeline')).not.toBeNull();
+    expect(document.querySelector('#experience .timeline__faculty')).not.toBeNull();
+    expect(document.querySelector('#experience .timeline__faculty')?.textContent).toContain(
+      SITE_CONTENT.experience.items[0].faculty,
+    );
+    expect(document.querySelector('#experience .timeline__school')).not.toBeNull();
+    expect(document.querySelector('#experience .timeline__school')?.textContent).toContain(
+      SITE_CONTENT.experience.items[0].school,
+    );
     expect(document.querySelector('#publications .publication-list')).not.toBeNull();
     expect(document.querySelector('#contact a[href^="mailto:"]')).not.toBeNull();
   });
@@ -78,7 +87,6 @@ describe('homepage shell', () => {
     document.body.innerHTML = '<div id="app"></div>';
 
     renderSite(document.querySelector('#app'), SITE_CONTENT, {
-      theme: 'light',
     });
 
     expect(document.querySelector('[data-language="zh"]')).toBeNull();
@@ -86,20 +94,18 @@ describe('homepage shell', () => {
     expect(localStorage.getItem('homepage-language')).toBeNull();
   });
 
-  it('updates the document theme and persists it', async () => {
+  it('does not render or persist a theme toggle', async () => {
     const { renderSite } = await import('../scripts/app.js');
     const { SITE_CONTENT } = await import('../scripts/content.js');
 
     document.body.innerHTML = '<div id="app"></div>';
 
     renderSite(document.querySelector('#app'), SITE_CONTENT, {
-      theme: 'light',
     });
 
-    document.querySelector('[data-theme-toggle]')?.click();
-
-    expect(document.documentElement.dataset.theme).toBe('dark');
-    expect(localStorage.getItem('homepage-theme')).toBe('dark');
+    expect(document.querySelector('[data-theme-toggle]')).toBeNull();
+    expect(localStorage.getItem('homepage-theme')).toBeNull();
+    expect(document.documentElement.dataset.theme).toBeUndefined();
   });
 
   it('renders the layout hooks needed for hero, timeline, and publications styling', async () => {
@@ -109,7 +115,6 @@ describe('homepage shell', () => {
     document.body.innerHTML = '<div id="app"></div>';
 
     renderSite(document.querySelector('#app'), SITE_CONTENT, {
-      theme: 'light',
     });
 
     expect(document.querySelector('.site-header--sticky')).not.toBeNull();
@@ -126,7 +131,6 @@ describe('homepage shell', () => {
     document.body.innerHTML = '<div id="app"></div>';
 
     renderSite(document.querySelector('#app'), SITE_CONTENT, {
-      theme: 'light',
     });
 
     expect(document.querySelector('.site-nav__brand')).not.toBeNull();
