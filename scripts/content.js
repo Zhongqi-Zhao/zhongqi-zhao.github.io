@@ -8,8 +8,8 @@ export const SITE_CONTENT = {
   hero: {
     name: 'Zhongqi Zhao',
     nameZh: '赵中琦',
-    title: '',
-    tagline: 'Place the English one-line introduction here.',
+    title: 'Research Assistant',
+    tagline: '',
     affiliation: 'The Chinese University of Hong Kong, Shenzhen / Guangdong, China',
     portraitAlt: 'Portrait of Zhongqi Zhao',
   },
