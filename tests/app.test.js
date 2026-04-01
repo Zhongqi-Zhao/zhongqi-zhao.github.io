@@ -7,9 +7,11 @@ describe('homepage shell', () => {
     const stylesheet = readFileSync(resolve(process.cwd(), 'styles/site.css'), 'utf8');
     const heroBlock = stylesheet.match(/\.hero\s*\{[\s\S]*?\n\}/)?.[0] ?? '';
 
-    expect(stylesheet).toContain('font-size: clamp(2.35rem, 4.6vw, 4rem);');
+    expect(stylesheet).toContain('font-size: clamp(2.05rem, 4vw, 3.45rem);');
     expect(stylesheet).toContain('font-size: clamp(1.35rem, 2.2vw, 1.75rem);');
-    expect(stylesheet).toContain('font-size: 2.6rem;');
+    expect(stylesheet).toContain('font-size: 2.3rem;');
+    expect(stylesheet).toContain('.hero__name-zh');
+    expect(stylesheet).toContain('color: var(--muted);');
     expect(heroBlock).not.toContain('border-bottom');
   });
 
@@ -34,6 +36,7 @@ describe('homepage shell', () => {
     const { SITE_CONTENT } = await import('../scripts/content.js');
 
     expect(SITE_CONTENT.hero.name).toBe('Zhongqi Zhao');
+    expect(SITE_CONTENT.hero.nameZh).toBe('赵中琦');
     expect(SITE_CONTENT.research.heading).toBe('Research Interests');
     expect(Array.isArray(SITE_CONTENT.research.items)).toBe(true);
     expect(Array.isArray(SITE_CONTENT.experience.items)).toBe(true);
@@ -53,6 +56,7 @@ describe('homepage shell', () => {
 
     expect(document.documentElement.lang).toBe('en');
     expect(document.querySelector('.hero__name')?.textContent).toContain('Zhongqi Zhao');
+    expect(document.querySelector('.hero__name-zh')?.textContent).toBe('赵中琦');
     expect(document.querySelector('#about h2')?.textContent).toBe('Research Interests');
     expect(document.querySelector('.hero__tags')).toBeNull();
     expect(document.querySelector('#about .section__summary')).toBeNull();
@@ -123,6 +127,7 @@ describe('homepage shell', () => {
     expect(document.querySelector('.site-nav__brand')).not.toBeNull();
     expect(document.querySelector('.site-nav__brand')?.textContent).toBe('Zhongqi Zhao');
     expect(document.querySelector('.hero__intro')).not.toBeNull();
+    expect(document.querySelector('.hero__name-zh')).not.toBeNull();
     expect(document.querySelector('.hero__contact-link[href^="mailto:"]')).not.toBeNull();
     expect(document.querySelector('.hero__contact[href="#contact"]')).toBeNull();
   });

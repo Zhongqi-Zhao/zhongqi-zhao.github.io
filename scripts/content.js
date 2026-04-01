@@ -7,6 +7,7 @@ export const SITE_CONTENT = {
   },
   hero: {
     name: 'Zhongqi Zhao',
+    nameZh: '赵中琦',
     title: '',
     tagline: 'Place the English one-line introduction here.',
     affiliation: 'The Chinese University of Hong Kong, Shenzhen / Guangdong, China',

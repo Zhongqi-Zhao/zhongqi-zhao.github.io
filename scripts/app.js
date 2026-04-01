@@ -113,13 +113,14 @@ function renderContact(content) {
 
 function renderHero(content) {
   const title = content.hero.title ? `<p class="hero__title">${content.hero.title}</p>` : '';
+  const nameZh = content.hero.nameZh ? `<span class="hero__name-zh">${content.hero.nameZh}</span>` : '';
 
   return `
     <section class="hero section" data-section="hero">
       <div class="hero__intro">
         <p class="hero__eyebrow">${content.nav.about}</p>
         ${title}
-        <h1 class="hero__name">${content.hero.name}</h1>
+        <h1 class="hero__name">${content.hero.name}${nameZh}</h1>
         <p class="hero__affiliation">${content.hero.affiliation}</p>
         <p class="hero__tagline">${content.hero.tagline}</p>
         <div class="hero__meta">
