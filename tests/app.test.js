@@ -23,9 +23,12 @@ describe('homepage shell', () => {
     expect(stylesheet).toContain('font-size: 2.3rem;');
     expect(stylesheet).toContain('.hero__name-zh');
     expect(stylesheet).toContain('.publication__authors {');
-    expect(stylesheet).toContain('font-size: 0.92rem;');
+    expect(stylesheet).toContain('font-size: 0.90rem;');
     expect(stylesheet).toContain('.publication__note {');
-    expect(stylesheet).toContain('font-size: 0.84rem;');
+    expect(stylesheet).toContain('font-size: 0.90rem;');
+    expect(stylesheet).toContain('.publication__author {');
+    expect(stylesheet).toContain('display: inline;');
+    expect(stylesheet).toContain('font-size: inherit;');
     expect(stylesheet).toContain('color: var(--muted);');
     expect(heroBlock).not.toContain('border-bottom');
   });
