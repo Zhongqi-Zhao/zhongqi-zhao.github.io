@@ -151,11 +151,12 @@ button {
 
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 220px;
-  gap: 44px;
+  grid-template-columns: minmax(0, 1fr) 184px;
+  gap: 28px;
   align-items: start;
-  margin-top: 42px;
-  padding-bottom: 40px;
+  margin-top: 18px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .hero__intro {
@@ -243,7 +244,7 @@ button {
 }
 
 .hero__portrait {
-  width: min(100%, 220px);
+  width: min(100%, 184px);
   margin-left: auto;
 }
 
@@ -334,7 +335,7 @@ button {
 @media (max-width: 900px) {
   .hero {
     grid-template-columns: 1fr;
-    gap: 28px;
+    gap: 18px;
   }
 
   .hero__aside {
@@ -342,7 +343,7 @@ button {
   }
 
   .hero__portrait {
-    width: min(220px, 100%);
+    width: min(176px, 100%);
     margin-left: 0;
   }
 
@@ -371,7 +372,9 @@ button {
   }
 
   .hero {
-    margin-top: 30px;
+    margin-top: 16px;
+    padding-top: 8px;
+    padding-bottom: 8px;
   }
 
   .hero__name {

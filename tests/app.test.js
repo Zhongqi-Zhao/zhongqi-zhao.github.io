@@ -13,6 +13,11 @@ describe('homepage shell', () => {
     expect(stylesheet).toContain('background: var(--ku-red);');
     expect(stylesheet).toContain('.site-header {');
     expect(stylesheet).toContain('width: 100%;');
+    expect(stylesheet).toContain('grid-template-columns: minmax(0, 1fr) 184px;');
+    expect(stylesheet).toContain('gap: 28px;');
+    expect(stylesheet).toContain('margin-top: 18px;');
+    expect(stylesheet).toContain('padding-bottom: 10px;');
+    expect(stylesheet).toContain('width: min(100%, 184px);');
     expect(stylesheet).toContain('font-size: clamp(2.05rem, 4vw, 3.45rem);');
     expect(stylesheet).toContain('font-size: clamp(1.35rem, 2.2vw, 1.75rem);');
     expect(stylesheet).toContain('font-size: 2.3rem;');
