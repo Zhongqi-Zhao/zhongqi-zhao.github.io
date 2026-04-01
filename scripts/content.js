@@ -45,8 +45,17 @@ export const SITE_CONTENT = {
     heading: 'Publications',
     items: [
       {
-        title: '',
-        authors: '',
+        title: 'Quantum error mitigation using energy sampling and extrapolation enhanced Clifford data regression',
+        href: 'https://arxiv.org/abs/2511.03556',
+        authors: [
+          { name: 'Zhongqi Zhao', highlight: true },
+          { name: 'Erik Rosendahl Kjellgren' },
+          { name: 'Sonia Coriani' },
+          { name: 'Jacob Kongsted' },
+          { name: 'Stephan P. A. Sauer' },
+          { name: 'Karl Michael Ziems' },
+        ],
+        note: 'arXiv preprint, submitted',
       },
     ],
   },

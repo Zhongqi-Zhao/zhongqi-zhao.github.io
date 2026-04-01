@@ -53,6 +53,8 @@ describe('homepage shell', () => {
     expect(SITE_CONTENT.experience.items[0].faculty).toBeTruthy();
     expect(SITE_CONTENT.experience.items[0].school).toBeTruthy();
     expect(Array.isArray(SITE_CONTENT.publications.items)).toBe(true);
+    expect(SITE_CONTENT.publications.items[0].href).toBe('https://arxiv.org/abs/2511.03556');
+    expect(SITE_CONTENT.publications.items[0].note).toBe('arXiv preprint, submitted');
     expect(SITE_CONTENT.contact.email).toContain('@');
   });
 
@@ -82,6 +84,14 @@ describe('homepage shell', () => {
       SITE_CONTENT.experience.items[0].school,
     );
     expect(document.querySelector('#publications .publication-list')).not.toBeNull();
+    expect(document.querySelector('.publication-card a')?.getAttribute('href')).toBe('https://arxiv.org/abs/2511.03556');
+    expect(document.querySelector('.publication-card a')?.textContent).toContain(
+      'Quantum error mitigation using energy sampling and extrapolation enhanced Clifford data regression',
+    );
+    expect(document.querySelector('.publication-card strong.publication__author')?.textContent).toBe('Zhongqi Zhao');
+    expect(document.querySelector('.publication-card .publication__note')?.textContent).toContain(
+      'arXiv preprint, submitted',
+    );
     expect(document.querySelector('#contact a[href^="mailto:"]')).not.toBeNull();
   });
 

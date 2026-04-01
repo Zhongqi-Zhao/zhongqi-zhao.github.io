@@ -56,13 +56,23 @@ function renderTimeline(content) {
 }
 
 function renderPublications(content) {
+  const renderPublicationAuthors = (authors) =>
+    authors
+      .map((author) =>
+        author.highlight
+          ? `<strong class="publication__author">${author.name}</strong>`
+          : `<span>${author.name}</span>`,
+      )
+      .join(', ');
+
   const items = content.publications.items.length
     ? content.publications.items
         .map(
           (item) => `
             <li class="publication-card">
-              <strong>${item.title}</strong>
-              <span>${item.authors}</span>
+              <strong><a href="${item.href}">${item.title}</a></strong>
+              <span>${renderPublicationAuthors(item.authors)}</span>
+              <span class="publication__note">${item.note}</span>
             </li>
           `,
         )
