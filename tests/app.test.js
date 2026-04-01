@@ -22,6 +22,10 @@ describe('homepage shell', () => {
     expect(stylesheet).toContain('font-size: clamp(1.35rem, 2.2vw, 1.75rem);');
     expect(stylesheet).toContain('font-size: 2.3rem;');
     expect(stylesheet).toContain('.hero__name-zh');
+    expect(stylesheet).toContain('.publication__authors {');
+    expect(stylesheet).toContain('font-size: 0.92rem;');
+    expect(stylesheet).toContain('.publication__note {');
+    expect(stylesheet).toContain('font-size: 0.84rem;');
     expect(stylesheet).toContain('color: var(--muted);');
     expect(heroBlock).not.toContain('border-bottom');
   });

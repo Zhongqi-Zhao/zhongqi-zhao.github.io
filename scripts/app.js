@@ -71,7 +71,7 @@ function renderPublications(content) {
           (item) => `
             <li class="publication-card">
               <strong><a href="${item.href}">${item.title}</a></strong>
-              <span>${renderPublicationAuthors(item.authors)}</span>
+              <span class="publication__authors">${renderPublicationAuthors(item.authors)}</span>
               <span class="publication__note">${item.note}</span>
             </li>
           `,
