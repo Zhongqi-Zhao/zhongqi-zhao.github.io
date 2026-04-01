@@ -20,7 +20,6 @@ describe('homepage shell', () => {
     document.body.innerHTML = '<div id="app"></div>';
 
     renderSite(document.querySelector('#app'), SITE_CONTENT, {
-      language: 'zh',
       theme: 'light',
     });
 
@@ -31,53 +30,51 @@ describe('homepage shell', () => {
     expect(document.querySelector('#contact')).not.toBeNull();
   });
 
-  it('provides zh and en content for all homepage sections', async () => {
+  it('provides a single English content object for all homepage sections', async () => {
     const { SITE_CONTENT } = await import('../scripts/content.js');
 
-    expect(SITE_CONTENT.zh.hero.name).toBeTruthy();
-    expect(SITE_CONTENT.en.hero.name).toBeTruthy();
-    expect(Array.isArray(SITE_CONTENT.zh.research.items)).toBe(true);
-    expect(Array.isArray(SITE_CONTENT.en.experience.items)).toBe(true);
-    expect(Array.isArray(SITE_CONTENT.zh.publications.items)).toBe(true);
-    expect(SITE_CONTENT.en.contact.email).toContain('@');
+    expect(SITE_CONTENT.hero.name).toBe('Zhongqi Zhao');
+    expect(SITE_CONTENT.research.heading).toBe('Research Interests');
+    expect(Array.isArray(SITE_CONTENT.research.items)).toBe(true);
+    expect(Array.isArray(SITE_CONTENT.experience.items)).toBe(true);
+    expect(Array.isArray(SITE_CONTENT.publications.items)).toBe(true);
+    expect(SITE_CONTENT.contact.email).toContain('@');
   });
 
-  it('renders hero, research, experience, publications, and contact from zh data', async () => {
+  it('renders hero, research, experience, publications, and contact from English data', async () => {
     const { renderSite } = await import('../scripts/app.js');
     const { SITE_CONTENT } = await import('../scripts/content.js');
 
     document.body.innerHTML = '<div id="app"></div>';
 
     renderSite(document.querySelector('#app'), SITE_CONTENT, {
-      language: 'zh',
       theme: 'light',
     });
 
-    expect(document.querySelector('.hero__name')?.textContent).toContain('赵中琦');
-    expect(document.querySelector('#about h2')?.textContent).toBe('研究方向');
+    expect(document.documentElement.lang).toBe('en');
+    expect(document.querySelector('.hero__name')?.textContent).toContain('Zhongqi Zhao');
+    expect(document.querySelector('#about h2')?.textContent).toBe('Research Interests');
     expect(document.querySelector('.hero__tags')).toBeNull();
     expect(document.querySelector('#about .section__summary')).toBeNull();
-    expect(document.querySelectorAll('#about .research__tags .tag')).toHaveLength(SITE_CONTENT.zh.research.items.length);
+    expect(document.querySelectorAll('#about .research__tags .tag')).toHaveLength(SITE_CONTENT.research.items.length);
     expect(document.querySelector('#experience .timeline')).not.toBeNull();
     expect(document.querySelector('#publications .publication-list')).not.toBeNull();
     expect(document.querySelector('#contact a[href^="mailto:"]')).not.toBeNull();
   });
 
-  it('switches visible text when the language toggle is clicked', async () => {
+  it('does not render language toggle controls', async () => {
     const { renderSite } = await import('../scripts/app.js');
     const { SITE_CONTENT } = await import('../scripts/content.js');
 
     document.body.innerHTML = '<div id="app"></div>';
 
     renderSite(document.querySelector('#app'), SITE_CONTENT, {
-      language: 'zh',
       theme: 'light',
     });
 
-    document.querySelector('[data-language="en"]')?.click();
-
-    expect(document.querySelector('#about h2')?.textContent).toBe('Research Interests');
-    expect(localStorage.getItem('homepage-language')).toBe('en');
+    expect(document.querySelector('[data-language="zh"]')).toBeNull();
+    expect(document.querySelector('[data-language="en"]')).toBeNull();
+    expect(localStorage.getItem('homepage-language')).toBeNull();
   });
 
   it('updates the document theme and persists it', async () => {
@@ -87,7 +84,6 @@ describe('homepage shell', () => {
     document.body.innerHTML = '<div id="app"></div>';
 
     renderSite(document.querySelector('#app'), SITE_CONTENT, {
-      language: 'zh',
       theme: 'light',
     });
 
@@ -104,13 +100,12 @@ describe('homepage shell', () => {
     document.body.innerHTML = '<div id="app"></div>';
 
     renderSite(document.querySelector('#app'), SITE_CONTENT, {
-      language: 'en',
       theme: 'light',
     });
 
     expect(document.querySelector('.site-header--sticky')).not.toBeNull();
     expect(document.querySelector('.hero__portrait img')).not.toBeNull();
-    expect(document.querySelector('.hero__portrait img')?.getAttribute('src')).toBe('./einstein-tongue-jpg.jpeg');
+    expect(document.querySelector('.hero__portrait img')?.getAttribute('src')).toBe('./P4101150.JPG');
     expect(document.querySelector('.timeline__item')).not.toBeNull();
     expect(document.querySelector('.publication-card, .publication-list')).not.toBeNull();
   });
@@ -122,7 +117,6 @@ describe('homepage shell', () => {
     document.body.innerHTML = '<div id="app"></div>';
 
     renderSite(document.querySelector('#app'), SITE_CONTENT, {
-      language: 'en',
       theme: 'light',
     });
 

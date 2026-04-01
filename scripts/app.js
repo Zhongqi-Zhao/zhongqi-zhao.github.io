@@ -1,7 +1,6 @@
 import { SITE_CONTENT } from './content.js';
 
 const STORAGE_KEYS = {
-  language: 'homepage-language',
   theme: 'homepage-theme',
 };
 
@@ -20,12 +19,10 @@ function setTheme(theme) {
 }
 
 function renderNav(content, state) {
-  const brand = state.language === 'en' ? content.hero.name.split('/')[0].trim() : content.hero.name;
-
   return `
     <header class="site-header site-header--sticky">
       <nav class="site-nav" aria-label="Primary">
-        <a class="site-nav__brand" href="#app">${brand}</a>
+        <a class="site-nav__brand" href="#app">${content.hero.name}</a>
         <div class="site-nav__links">
           <a href="#about">${content.nav.about}</a>
           <a href="#experience">${content.nav.experience}</a>
@@ -33,8 +30,6 @@ function renderNav(content, state) {
           <a href="#contact">${content.nav.contact}</a>
         </div>
         <div class="site-nav__controls">
-          <button type="button" data-language="zh" aria-pressed="${state.language === 'zh'}">ZH</button>
-          <button type="button" data-language="en" aria-pressed="${state.language === 'en'}">EN</button>
           <button type="button" data-theme-toggle>${state.theme === 'light' ? 'Dark' : 'Light'}</button>
         </div>
       </nav>
@@ -133,22 +128,20 @@ function renderHero(content) {
       </div>
       <div class="hero__aside">
         <div class="hero__portrait">
-          <img src="./einstein-tongue-jpg.jpeg" alt="${content.hero.portraitAlt}">
+          <img src="./P4101150.JPG" alt="${content.hero.portraitAlt}">
         </div>
       </div>
     </section>
   `;
 }
 
-export function renderSite(root, contentMap, state) {
+export function renderSite(root, content, state) {
   const nextState = {
-    language: state.language,
     theme: state.theme,
   };
-  const content = contentMap[nextState.language];
 
   setTheme(nextState.theme);
-  document.documentElement.lang = nextState.language === 'zh' ? 'zh-CN' : 'en';
+  document.documentElement.lang = 'en';
 
   root.innerHTML = `
     ${renderNav(content, nextState)}
@@ -161,18 +154,10 @@ export function renderSite(root, contentMap, state) {
     </main>
   `;
 
-  root.querySelectorAll('[data-language]').forEach((button) => {
-    button.addEventListener('click', () => {
-      nextState.language = button.dataset.language;
-      writeStoredValue(STORAGE_KEYS.language, nextState.language);
-      renderSite(root, contentMap, nextState);
-    });
-  });
-
   root.querySelector('[data-theme-toggle]')?.addEventListener('click', () => {
     nextState.theme = nextState.theme === 'light' ? 'dark' : 'light';
     setTheme(nextState.theme);
-    renderSite(root, contentMap, nextState);
+    renderSite(root, content, nextState);
   });
 }
 
@@ -180,7 +165,6 @@ const appRoot = document.querySelector('#app');
 
 if (appRoot) {
   renderSite(appRoot, SITE_CONTENT, {
-    language: readStoredValue(STORAGE_KEYS.language, 'zh'),
     theme: readStoredValue(STORAGE_KEYS.theme, 'light'),
   });
 }
