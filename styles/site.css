@@ -1,4 +1,6 @@
 :root {
+  --ku-red: #901a1e;
+  --ku-red-deep: #6d1317;
   --bg: #f5f2ea;
   --bg-accent: linear-gradient(180deg, #fbfaf6 0%, #f4f1ea 48%, #efebe3 100%);
   --surface: rgba(255, 255, 255, 0.58);
@@ -14,17 +16,17 @@
 }
 
 :root[data-theme='dark'] {
-  --bg: #11161d;
-  --bg-accent: linear-gradient(180deg, #151b23 0%, #11161d 52%, #0c1016 100%);
-  --surface: rgba(18, 23, 30, 0.72);
-  --surface-strong: rgba(20, 27, 35, 0.9);
-  --text: #e4e9ef;
-  --muted: #a4b0bc;
-  --accent: #93b8dd;
-  --accent-strong: #cfe2f5;
-  --line: rgba(228, 233, 239, 0.14);
-  --line-strong: rgba(228, 233, 239, 0.22);
-  --shadow: 0 20px 48px rgba(0, 0, 0, 0.25);
+  --bg: #ffffff;
+  --bg-accent: #ffffff;
+  --surface: rgba(255, 255, 255, 0.9);
+  --surface-strong: #ffffff;
+  --text: #222a33;
+  --muted: #66717c;
+  --accent: #355f86;
+  --accent-strong: #1f466d;
+  --line: rgba(34, 42, 51, 0.14);
+  --line-strong: rgba(34, 42, 51, 0.24);
+  --shadow: 0 18px 40px rgba(41, 47, 54, 0.08);
 }
 
 * {
@@ -38,7 +40,7 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-  background: var(--bg-accent);
+  background: #ffffff;
   color: var(--text);
   font-family: 'Source Sans 3', 'Avenir Next', 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
     sans-serif;
@@ -60,33 +62,36 @@ button {
 .page-shell {
   width: min(920px, calc(100vw - 48px));
   margin: 0 auto;
-  padding: 48px 0 104px;
+  padding: 40px 0 104px;
 }
 
 .site-header {
-  width: min(980px, calc(100vw - 48px));
-  margin: 0 auto;
-  padding-top: 18px;
+  width: 100%;
+  margin: 0;
+  padding: 18px 0 14px;
+  background: var(--ku-red);
+  border-bottom: 4px solid var(--ku-red-deep);
+  box-shadow: 0 16px 32px rgba(109, 19, 23, 0.18);
 }
 
 .site-header--sticky {
   position: sticky;
   top: 0;
   z-index: 10;
-  backdrop-filter: blur(14px);
 }
 
 .site-nav {
+  width: min(980px, calc(100vw - 48px));
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  padding: 0 4px 14px;
-  border-bottom: 1px solid var(--line-strong);
+  padding: 0 4px;
 }
 
 .site-nav__brand {
-  color: var(--accent-strong);
+  color: #ffffff;
   font-family: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', 'Times New Roman', serif;
   font-size: 1.08rem;
   font-weight: 600;
@@ -104,14 +109,14 @@ button {
 }
 
 .site-nav__links a {
-  color: var(--muted);
+  color: rgba(255, 255, 255, 0.84);
   text-decoration: none;
   transition: color 160ms ease;
 }
 
 .site-nav__links a:hover,
 .site-nav__links a:focus-visible {
-  color: var(--accent-strong);
+  color: #ffffff;
 }
 
 .site-nav__controls button,
@@ -140,6 +145,22 @@ button {
 .hero__contact-link:hover {
   transform: translateY(-1px);
   border-color: var(--accent);
+}
+
+.site-nav__controls button {
+  border-color: rgba(255, 255, 255, 0.42);
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.site-nav__controls button[aria-pressed='true'] {
+  border-color: rgba(255, 255, 255, 0.7);
+  color: #ffffff;
+}
+
+.site-nav__controls button:hover {
+  border-color: #ffffff;
+  background: rgba(255, 255, 255, 0.16);
 }
 
 .hero {
@@ -347,7 +368,7 @@ button {
 
 @media (max-width: 640px) {
   .page-shell,
-  .site-header {
+  .site-nav {
     width: min(100vw - 28px, 100%);
   }
 

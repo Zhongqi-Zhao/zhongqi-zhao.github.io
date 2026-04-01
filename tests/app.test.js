@@ -7,6 +7,11 @@ describe('homepage shell', () => {
     const stylesheet = readFileSync(resolve(process.cwd(), 'styles/site.css'), 'utf8');
     const heroBlock = stylesheet.match(/\.hero\s*\{[\s\S]*?\n\}/)?.[0] ?? '';
 
+    expect(stylesheet).toContain('--ku-red: #901a1e;');
+    expect(stylesheet).toContain('background: #ffffff;');
+    expect(stylesheet).toContain('background: var(--ku-red);');
+    expect(stylesheet).toContain('.site-header {');
+    expect(stylesheet).toContain('width: 100%;');
     expect(stylesheet).toContain('font-size: clamp(2.05rem, 4vw, 3.45rem);');
     expect(stylesheet).toContain('font-size: clamp(1.35rem, 2.2vw, 1.75rem);');
     expect(stylesheet).toContain('font-size: 2.3rem;');
